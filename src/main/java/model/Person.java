@@ -1,11 +1,11 @@
 package model;
 
 public abstract class Person {
+    private final  String id;
     private String name;
-    private final String id;
     private String email;
 
-    public Person(String name, String id, String email) {
+    public Person(String id, String name, String email) {
         if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("ID cannot be empty!");
         }

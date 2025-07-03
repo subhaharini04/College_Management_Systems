@@ -27,11 +27,11 @@ public class Student extends Person { ;
     }
 @Override
     public void displayInfo(){
-        System.out.println("Student: " + getName() +
-                "\nID: " + getId() +
-                "\nEmail: " + getEmail() +
-                "\nMajor: " + major +
-                "\nYear: " + year);    }
+        System.out.println( "Student:   " + getName() + "\n" +
+                "ID:        " + getId() + "\n" +
+                "Email:     " + getEmail() + "\n" +
+                "Major:     " + major + "\n" +
+                "Year:      " + year);    }
 }
 
 
