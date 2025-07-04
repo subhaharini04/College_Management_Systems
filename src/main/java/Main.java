@@ -1,11 +1,20 @@
 import model.Faculty;
 import model.Student;
+import util.DBConnection;
+import java.sql.Connection;
+
 public class Main {
     public static void main(String[] args) {
-        Student s = new Student("S2025001", "Alice", "alice@college.com", "CS", 2);
-        s.displayInfo();
-        s.setEmail("alice.new@college.com");
-        Faculty f=new Faculty("F2025001","Bob","bob@college.com","CSE");
-        f.displayInfo();
+        System.getenv().forEach((k, v) -> {
+            if (k.startsWith("DB_")) {
+                System.out.printf("%s: %s%n", k, k.contains("PASS") ? "******" : v);
+            }
+        });
+        try (Connection conn = DBConnection.getConnection()) {
+            System.out.println("\n Database connection successful!");
+        } catch (Exception e) {
+            System.err.println("Connection failed: " + e.getMessage());
+        }
+
     }
 }
