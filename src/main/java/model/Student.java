@@ -10,12 +10,12 @@ public class Student extends Person { ;
         this.year = year;
     }
 
-    public String getDept() {
+    public String getMajor() {
         return major;
     }
 
-    public void setDept(String dept) {
-        this.major = dept;
+    public void setMajor(String dept) {
+        this.major = major;
     }
 
     public int getYear() {
