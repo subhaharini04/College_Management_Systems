@@ -21,10 +21,79 @@ public class StudentDAO {
             e.printStackTrace();
         }
     }
-    public void updateStudent(Student student){
 
+    public Student getStudentById(String id) {
+        String sql = "SELECT * FROM students WHERE id= ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Student(
+                            rs.getString("id"),
+                            rs.getString("name"),
+                            rs.getString("email"),
+                            rs.getString("major"),
+                            rs.getInt("year")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching Student - " + e.getMessage());
+        }
+        return null;
     }
-    public void deleteStudent(Student student){
+
+    public boolean updateEmail(String id, String newEmail) {
+        String sql = "UPDATE students SET email=? WHERE id=?";
+        if (newEmail == null || !newEmail.contains("@")) {
+            System.err.println("Invalid email format");
+            return false;
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newEmail);
+            stmt.setString(2, id);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateYear(String id, String newYear) {
+        String sql = "UPDATE students SET year=? WHERE id=?";
+        if (newYear == null) {
+            System.err.println("Invalid email format");
+            return false;
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newYear);
+            stmt.setString(2, id);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateMajor(String id, String newMajor) {
+        String sql = "UPDATE students SET major=? WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newMajor);
+            stmt.setString(2, id);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void deleteStudent(Student student) {
 
     }
 }

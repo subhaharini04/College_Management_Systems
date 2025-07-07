@@ -12,9 +12,23 @@ public class Main {
             System.err.println("Connection failed: " + e.getMessage());
         }
 
-        //STUDENT OPERATION
-        Student newStudent=new Student("S2024001", "Rahul", "rahul@college.edu", "Computer Science", 2);
-        new StudentDAO().insertStudent(newStudent);
-        newStudent.displayInfo();
+        //STUDENT OPERATION;
+
+        StudentDAO studentDAO=new StudentDAO();
+        Student fetchedStudent = studentDAO.getStudentById("S2024001");
+        if (fetchedStudent != null) {
+            System.out.println("Found: ");
+            fetchedStudent.displayInfo();
+        } else {
+            System.out.println("Student not found!");
+        }
+        boolean success = studentDAO.updateEmail("S2024001", "hani11@college.edu");
+        if (success){
+            Student updateStudent = studentDAO.getStudentById("S2024001");
+            System.out.println("Email update succe");
+            updateStudent.displayInfo();
+        }else{
+            System.out.println("update failed");
+        }
     }
 }
