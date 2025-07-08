@@ -62,6 +62,7 @@ public class StudentDAO {
             return false;
         }
     }
+
     public boolean updateYear(String id, String newYear) {
         String sql = "UPDATE students SET year=? WHERE id=?";
         if (newYear == null) {
@@ -79,6 +80,7 @@ public class StudentDAO {
             return false;
         }
     }
+
     public boolean updateMajor(String id, String newMajor) {
         String sql = "UPDATE students SET major=? WHERE id=?";
         try (Connection conn = DBConnection.getConnection();
@@ -93,7 +95,17 @@ public class StudentDAO {
         }
     }
 
-    public void deleteStudent(Student student) {
-
+    public boolean deleteStudent(String id) {
+        String sql = "DELETE FROM students WHERE id= ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            int rowDeleted = stmt.executeUpdate();
+            return rowDeleted>0;
+        } catch (SQLException e) {
+            System.err.println("Error deleting student: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 }

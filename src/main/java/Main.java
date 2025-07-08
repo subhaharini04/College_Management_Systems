@@ -2,6 +2,7 @@ import dao.StudentDAO;
 import model.Faculty;
 import model.Student;
 import util.DBConnection;
+
 import java.sql.Connection;
 
 public class Main {
@@ -13,22 +14,12 @@ public class Main {
         }
 
         //STUDENT OPERATION;
-
-        StudentDAO studentDAO=new StudentDAO();
-        Student fetchedStudent = studentDAO.getStudentById("S2024001");
-        if (fetchedStudent != null) {
-            System.out.println("Found: ");
-            fetchedStudent.displayInfo();
+        StudentDAO studentDAO = new StudentDAO();
+        boolean isDeleted = studentDAO.deleteStudent("S2024001");
+        if (isDeleted) {
+            System.out.println("Student removed");
         } else {
-            System.out.println("Student not found!");
-        }
-        boolean success = studentDAO.updateEmail("S2024001", "hani11@college.edu");
-        if (success){
-            Student updateStudent = studentDAO.getStudentById("S2024001");
-            System.out.println("Email update succe");
-            updateStudent.displayInfo();
-        }else{
-            System.out.println("update failed");
+            System.out.println("failed");
         }
     }
 }
