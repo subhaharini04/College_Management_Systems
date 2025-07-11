@@ -1,3 +1,4 @@
+import dao.FacultyDAO;
 import dao.StudentDAO;
 import model.Faculty;
 import model.Student;
@@ -13,13 +14,13 @@ public class Main {
             System.err.println("Connection failed: " + e.getMessage());
         }
 
-        //STUDENT OPERATION;
-        StudentDAO studentDAO = new StudentDAO();
-        boolean isDeleted = studentDAO.deleteStudent("S2024001");
-        if (isDeleted) {
-            System.out.println("Student removed");
-        } else {
-            System.out.println("failed");
-        }
+        //FACULTY
+        FacultyDAO facultyDAO=new FacultyDAO();
+       Faculty f= facultyDAO.getFacultyById("25F102");
+       if(f!=null){
+           System.out.println(f.getName());;
+       }else{
+           System.out.println("failed");
+       }
     }
 }
