@@ -40,4 +40,8 @@ public class FacultyDAO {
         }
         return null;
     }
+
+    public boolean updateEmail(String id){
+        return false;
+    }
 }
