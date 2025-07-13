@@ -1,4 +1,4 @@
-# 🎓 College Management System (Java + MySQL)
+# 🎓 College Management System (Java + MySQL):
 A simple Java-based console application to manage students and faculty information in a college. This project uses **JDBC** to connect with a **MySQL** database and demonstrates key **Object-Oriented Programming (OOP)** principles like encapsulation, abstraction, and inheritance.
 
 ## 🚀 Features
