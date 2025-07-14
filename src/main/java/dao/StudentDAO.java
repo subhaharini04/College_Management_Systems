@@ -1,9 +1,12 @@
 package dao;
 
+import model.Faculty;
 import model.Student;
 import util.DBConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDAO {
     public void insertStudent(Student student) {
@@ -108,4 +111,27 @@ public class StudentDAO {
             return false;
         }
     }
+
+    public static List<Student> getAllStudent(){
+        List<Student> studentList=new ArrayList<>();
+        String sql="SELECT * FROM students";
+        try(Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt= conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()){
+            while (rs.next()) {
+                Student student = new Student(
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("major"),
+                        rs.getInt("year")
+                );
+                studentList.add(student);
+            }
+        }catch (SQLException e){
+            System.err.println("Error fetching Stuent list: " + e.getMessage());
+        }
+        return studentList;
+    }
+
 }

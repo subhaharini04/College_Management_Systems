@@ -1,9 +1,11 @@
 import dao.FacultyDAO;
 import dao.StudentDAO;
+import dao.CourseDAO;
 import model.Faculty;
 import model.Student;
+import model.Course;
 import util.DBConnection;
-
+import java.util.List;
 import java.sql.Connection;
 
 public class Main {
@@ -15,12 +17,12 @@ public class Main {
         }
 
         //FACULTY
-        FacultyDAO facultyDAO=new FacultyDAO();
-       Faculty f= facultyDAO.getFacultyById("25F102");
-       if(f!=null){
-           System.out.println(f.getName());;
-       }else{
-           System.out.println("failed");
-       }
+
+        CourseDAO dao = new CourseDAO();
+        List<Course> courses = dao.courseByFaculty("F202501");
+
+        for (Course c : courses) {
+            System.out.println(c.getId() + " - " + c.getCourseName());
+        }
     }
 }
