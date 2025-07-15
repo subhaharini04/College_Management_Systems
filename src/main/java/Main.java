@@ -1,3 +1,4 @@
+import dao.EnrollmentDAO;
 import dao.FacultyDAO;
 import dao.StudentDAO;
 import dao.CourseDAO;
@@ -16,13 +17,7 @@ public class Main {
             System.err.println("Connection failed: " + e.getMessage());
         }
 
-        //FACULTY
-
-        CourseDAO dao = new CourseDAO();
-        List<Course> courses = dao.courseByFaculty("F202501");
-
-        for (Course c : courses) {
-            System.out.println(c.getId() + " - " + c.getCourseName());
-        }
+        EnrollmentDAO enrollmentDAO=new EnrollmentDAO();
+        enrollmentDAO.enrollStudents( "S202501","CSE101");
     }
 }

@@ -48,7 +48,7 @@ public class CourseDAO {
         String sql="SELECT * FROM courses WHERE faculty_id=?";
         try(Connection conn=DBConnection.getConnection();
         PreparedStatement stmt= conn.prepareStatement(sql)){
-            stmt.setString(1, facultyId); // ✅ set the parameter
+            stmt.setString(1, facultyId);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
