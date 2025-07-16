@@ -18,6 +18,17 @@ public class Main {
         }
 
         EnrollmentDAO enrollmentDAO=new EnrollmentDAO();
-        enrollmentDAO.enrollStudents( "S202501","CSE101");
-    }
+        System.out.println("\n📚 Students enrolled in CSE101:");
+        List<Student> students = enrollmentDAO.getStudentsByCourse("CSE101");
+        for (Student s : students) {
+            s.displayInfo();  // uses your overridden displayInfo()
+            System.out.println("-----------");
+        }
+
+        // 🔹 Test: Get courses a student is enrolled in
+        System.out.println("\n🧑‍🎓 Courses for student S202501:");
+        List<Course> courses = enrollmentDAO.getCoursesByStudent("S202501");
+        for (Course c : courses) {
+            System.out.println(c.getId() + " - " + c.getCourseName() + " - " + c.getFacultyId());
+        }    }
 }

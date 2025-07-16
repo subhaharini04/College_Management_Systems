@@ -66,15 +66,11 @@ public class StudentDAO {
         }
     }
 
-    public boolean updateYear(String id, String newYear) {
+    public boolean updateYear(String id, int newYear) {
         String sql = "UPDATE students SET year=? WHERE id=?";
-        if (newYear == null) {
-            System.err.println("Invalid email format");
-            return false;
-        }
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, newYear);
+            stmt.setInt(1, newYear);
             stmt.setString(2, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
