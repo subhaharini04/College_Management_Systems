@@ -14,7 +14,7 @@ import java.util.List;
 
 public class EnrollmentDAO {
     public void enrollStudents(String student_id, String course_id) {
-        String sql = "INSERT INTO enrollment(student_id,course_id) VALUES (?,?) ";
+        String sql = "INSERT INTO enrollments(student_id,course_id) VALUES (?,?) ";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, student_id);
@@ -25,13 +25,10 @@ public class EnrollmentDAO {
             e.printStackTrace();
         }
     }
-//    getStudentsByCourse(courseId)
-//    getCoursesByStudent(studentId)
-//    deleteEnrollment(studentId, courseId)
 
     public List<Student> getStudentsByCourse(String courseId) {
         List<Student> studentList = new ArrayList<>();
-        String sql = "SELECT s.* FROM students s join enrollment e ON s.id=e.student_id WHERE course_id=?";
+        String sql = "SELECT s.* FROM students s join enrollments e ON s.id=e.student_id WHERE course_id=?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, courseId);
@@ -56,7 +53,7 @@ public class EnrollmentDAO {
 
     public List<Course> getCoursesByStudent(String studentId) {
         List<Course> courseList = new ArrayList<>();
-        String sql = "SELECT c.* FROM courses c join enrollment e ON c.id=e.course_id WHERE student_id=?";
+        String sql = "SELECT c.* FROM courses c join enrollments e ON c.id=e.course_id WHERE student_id=?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, studentId);
@@ -78,7 +75,7 @@ public class EnrollmentDAO {
     }
 
     public boolean deleteEnrollment(String student_id , String course_id){
-        String sql="DELETE FROM enrollment WHERE student_id=? AND course_id=?";
+        String sql="DELETE FROM enrollments WHERE student_id=? AND course_id=?";
         try(Connection conn=DBConnection.getConnection();
         PreparedStatement stmt= conn.prepareStatement(sql)) {
             stmt.setString(1,student_id);
@@ -94,7 +91,7 @@ public class EnrollmentDAO {
 
     public List<Enrollment> getAllEnrollments() {
         List<Enrollment> enrollmentList = new ArrayList<>();
-        String sql = "SELECT * FROM enrollment";
+        String sql = "SELECT * FROM enrollments";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {

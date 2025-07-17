@@ -4,14 +4,16 @@ public abstract class Person {
     private final  String id;
     private String name;
     private String email;
+    private String password;
 
-    public Person(String id, String name, String email) {
+    public Person(String id, String name, String email,String password) {
         if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("ID cannot be empty!");
         }
         this.id = id;
        setName(name);
        setEmail(email);
+       setPassword(password);
     }
 
     public String getName() {
@@ -22,6 +24,13 @@ public abstract class Person {
     }
     public String getEmail() {
         return email;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setName(String name) {

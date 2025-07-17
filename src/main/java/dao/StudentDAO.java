@@ -2,6 +2,7 @@ package dao;
 
 import model.Faculty;
 import model.Student;
+import util.Authtication;
 import util.DBConnection;
 
 import java.sql.*;
@@ -10,7 +11,9 @@ import java.util.List;
 
 public class StudentDAO {
     public void insertStudent(Student student) {
-        String sql = "INSERT INTO students(id, name,email, major, year) VALUES(?, ?, ?, ?, ?);";
+        String pass = student.getPassword();
+        String hashedPassword = Authtication.hashedPass(pass);
+        String sql = "INSERT INTO students(id, name,email, major, year,password) VALUES(?, ?, ?, ?, ?);";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, student.getId());
@@ -18,6 +21,7 @@ public class StudentDAO {
             stmt.setString(3, student.getEmail());
             stmt.setString(4, student.getMajor());
             stmt.setInt(5, student.getYear());
+            stmt.setString(6, hashedPassword);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error inserting student: " + e.getMessage());
@@ -37,7 +41,8 @@ public class StudentDAO {
                             rs.getString("name"),
                             rs.getString("email"),
                             rs.getString("major"),
-                            rs.getInt("year")
+                            rs.getInt("year"),
+                            rs.getString("password")
                     );
                 }
             }
@@ -100,7 +105,7 @@ public class StudentDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, id);
             int rowDeleted = stmt.executeUpdate();
-            return rowDeleted>0;
+            return rowDeleted > 0;
         } catch (SQLException e) {
             System.err.println("Error deleting student: " + e.getMessage());
             e.printStackTrace();
@@ -108,23 +113,24 @@ public class StudentDAO {
         }
     }
 
-    public static List<Student> getAllStudent(){
-        List<Student> studentList=new ArrayList<>();
-        String sql="SELECT * FROM students";
-        try(Connection conn = DBConnection.getConnection();
-            PreparedStatement stmt= conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery()){
+    public static List<Student> getAllStudent() {
+        List<Student> studentList = new ArrayList<>();
+        String sql = "SELECT * FROM students";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Student student = new Student(
                         rs.getString("id"),
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("major"),
-                        rs.getInt("year")
+                        rs.getInt("year"),
+                        rs.getString("password")
                 );
                 studentList.add(student);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println("Error fetching Stuent list: " + e.getMessage());
         }
         return studentList;

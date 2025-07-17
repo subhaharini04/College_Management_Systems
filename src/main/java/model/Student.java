@@ -4,8 +4,8 @@ public class Student extends Person { ;
    private String major;
    private int year;
 
-    public Student(String id, String name, String email, String major, int year) {
-        super(id, name, email);
+    public Student(String id, String name, String email, String major, int year,String password) {
+        super(id, name, email,password);
         this.major = major;
         this.year = year;
     }
@@ -14,7 +14,7 @@ public class Student extends Person { ;
         return major;
     }
 
-    public void setMajor(String dept) {
+    public void setMajor(String major) {
         this.major = major;
     }
 

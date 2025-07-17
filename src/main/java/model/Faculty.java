@@ -3,8 +3,8 @@ package model;
 public class Faculty extends Person {
     private String dept;
 
-    public Faculty(String id, String name, String email, String dept) {
-        super(id, name, email);
+    public Faculty(String id, String name, String email, String dept,String password) {
+        super(id, name, email,password);
         if (dept == null || dept.isEmpty()) {
             throw new IllegalArgumentException("Department cannot be empty!");
         }
