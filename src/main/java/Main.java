@@ -2,6 +2,9 @@ import dao.EnrollmentDAO;
 import dao.FacultyDAO;
 import dao.StudentDAO;
 import dao.CourseDAO;
+import dashboard.adminDashboard;
+import dashboard.facultyDashboard;
+import dashboard.studentDashboard;
 import model.Admin;
 import model.Faculty;
 import model.Student;
@@ -44,25 +47,26 @@ public class Main {
         //1. View My Courses
         //2. Enroll in a Course
         //3. Exit to Main Menu
-        StudentDAO studentDAO=new StudentDAO();
-        FacultyDAO facultyDAO=new FacultyDAO();
-        Admin admin=new Admin();
+        studentDashboard student = new studentDashboard();
+        facultyDashboard faculty = new facultyDashboard();
+        adminDashboard admin=new adminDashboard();
         System.out.println("====== Welcome to College Management System ======");
         System.out.println("Select your role:");
         System.out.println("1. Student\n2. Faculty\n3. Admin\n4.Exit\nEnter choice:");
         int choice = obj.nextInt();
-        switch (choice){
-            case 1:
-                studentDAO.dashboard();
-                break;
-            case 2:
-                facultyDAO.dashboard();
-                break;
-            case 3:
-                admin.dashboard();
-                break;
-            case 4:
-                break;
+        boolean isValid = true;
+        while (isValid) {
+            switch (choice) {
+                case 1:
+                    student.display();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    isValid=false;
+            }
         }
     }
 }

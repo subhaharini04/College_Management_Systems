@@ -39,7 +39,8 @@ public class EnrollmentDAO {
                             rs.getString("name"),
                             rs.getString("email"),
                             rs.getString("major"),
-                            rs.getInt("year")
+                            rs.getInt("year"),
+                            rs.getString("password")
                     );
                     studentList.add(student);
                 }
