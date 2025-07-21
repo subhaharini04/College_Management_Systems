@@ -1,13 +1,11 @@
 package dashboard;
-
 import dao.CourseDAO;
 import dao.EnrollmentDAO;
-
 import java.util.Scanner;
 
 public class facultyDashboard {
     CourseDAO course = new CourseDAO();
-
+    EnrollmentDAO enroll=new EnrollmentDAO();
     public void display() {
         Scanner obj = new Scanner(System.in);
         System.out.println("====== Faculty Portal ======");
@@ -20,7 +18,7 @@ public class facultyDashboard {
                     course.courseByFaculty();
                     break;
                 case 2:
-                    course.;
+                    enroll.getStudentsByCourse();
                     break;
                 case 3:
                     isValid = false;
