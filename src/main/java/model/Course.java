@@ -34,4 +34,10 @@ public class Course {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
+
+    public void displayInfo(){
+        System.out.println("Course Name:   " + getCourseName() + "\n" +
+                "ID:        " + getId() + "\n" +
+                "Faculty ID:     " + getFacultyId());
+    }
 }

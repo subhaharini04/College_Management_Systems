@@ -7,6 +7,7 @@ import dashboard.facultyDashboard;
 import dashboard.studentDashboard;
 import util.Authtication;
 import util.DBConnection;
+
 import java.sql.Connection;
 import java.util.Scanner;
 
@@ -22,14 +23,15 @@ public class Main {
         }
         studentDashboard student = new studentDashboard();
         facultyDashboard faculty = new facultyDashboard();
-        adminDashboard admin=new adminDashboard();
+        adminDashboard admin = new adminDashboard();
         System.out.println();
         boolean isValid = true;
         while (isValid) {
-        System.out.println("====== Welcome to College Management System ======");
-        System.out.println("Select your role:");
-        System.out.println("1. Student\n2. Faculty\n3. Admin\n4.Exit\nEnter choice:");
-        int choice = obj.nextInt();
+            System.out.println("====== Welcome to College Management System ======");
+            System.out.println("Select your role:");
+            System.out.println("1. Student\n2. Faculty\n3. Admin\n4. Exit");
+            System.out.print("Enter choice: ");
+            int choice = obj.nextInt();
             switch (choice) {
                 case 1:
                     student.display();
@@ -41,7 +43,7 @@ public class Main {
                     admin.display();
                     break;
                 case 4:
-                    isValid=false;
+                    isValid = false;
                     System.out.println("Exiting...Thank You!...");
                     break;
                 default:

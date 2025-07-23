@@ -32,10 +32,10 @@ public class StudentDAO {
     }
 
     public boolean isAlreadyInserted(String studentId) {
-        String sql = "SELECT * FROM students WHERE student_id = ?";
+        String sql = "SELECT * FROM students WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, student.);
+            stmt.setString(1, studentId);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -47,7 +47,7 @@ public class StudentDAO {
     public void insertStudent(Student student) {
         String pass = student.getPassword();
         String hashedPassword = Authtication.hashedPass(pass);
-        String sql = "INSERT INTO students(id, name,email, major, year,password) VALUES(?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO students(id, name,email, major, year,password) VALUES(?, ?, ?, ?, ?,?);";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, student.getId());

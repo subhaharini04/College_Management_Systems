@@ -11,6 +11,19 @@ import java.util.List;
 
 public class CourseDAO {
 
+    public boolean isAlreadyInserted(String courseId) {
+        String sql = "SELECT * FROM courses WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, courseId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.err.println("Error checking inserting: " + e.getMessage());
+            return false;
+        }
+    }
+
     public void insertCourse(Course course) {
         String sql = "INSERT INTO courses(id,course_name,faculty_id) VALUES(?,?,?)";
         try (Connection conn = DBConnection.getConnection();
@@ -117,6 +130,4 @@ public class CourseDAO {
             return false;
         }
     }
-
-
 }

@@ -17,4 +17,9 @@ public class Enrollment {
         return studentId;
     }
 
+    public void displayInfo(){
+        System.out.println("Course ID:   " + getCourseId() + "\n" +
+                "Student ID:        " + getStudentId());
+    }
+
 }

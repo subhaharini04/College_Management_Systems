@@ -31,10 +31,24 @@ public class FacultyDAO {
         }
     }
 
+    public boolean isAlreadyInserted(String facultyId) {
+        String sql = "SELECT * FROM facultys WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, facultyId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.err.println("Error checking inserting: " + e.getMessage());
+            return false;
+        }
+    }
+
+
     public void insertFaculty(Faculty faculty) {
         String pass= faculty.getPassword();
         String hashed= Authtication.hashedPass(pass);
-        String sql = "INSERT INTO facultys(id,name,email,department) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO facultys(id,name,email,department,password) VALUES(?,?,?,?,?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, faculty.getId());
