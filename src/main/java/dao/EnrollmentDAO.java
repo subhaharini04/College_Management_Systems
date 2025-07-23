@@ -13,6 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnrollmentDAO {
+
+    public boolean isAlreadyEnrolled(String studentId, String courseId) {
+        String sql = "SELECT * FROM enrollments WHERE student_id = ? AND course_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, studentId);
+            stmt.setString(2, courseId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.err.println("Error checking enrollment: " + e.getMessage());
+            return false;
+        }
+    }
+
+
     public void enrollStudents(String student_id, String course_id) {
         String sql = "INSERT INTO enrollments(student_id,course_id) VALUES (?,?) ";
         try (Connection conn = DBConnection.getConnection();

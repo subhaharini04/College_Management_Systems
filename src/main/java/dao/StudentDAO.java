@@ -10,6 +10,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO {
+
+    public boolean login(String id,String pass){
+        String sql="SELECT password FROM students WHERE ID=?";
+        try(Connection conn=DBConnection.getConnection();
+        PreparedStatement stmt= conn.prepareStatement(sql)) {
+            stmt.setString(1,id);
+            ResultSet rs=stmt.executeQuery();
+            if(rs.next()){
+                String originalPass= rs.getString("password");
+
+                String hashed=Authtication.hashedPass(pass);
+                return originalPass.equals(hashed);
+            }else {
+                return false;
+            }
+        }catch (SQLException e){
+            System.out.println("Error.."+e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean isAlreadyInserted(String studentId) {
+        String sql = "SELECT * FROM students WHERE student_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, student.);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.err.println("Error checking inserting: " + e.getMessage());
+            return false;
+        }
+    }
+
     public void insertStudent(Student student) {
         String pass = student.getPassword();
         String hashedPassword = Authtication.hashedPass(pass);

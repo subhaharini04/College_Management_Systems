@@ -10,6 +10,27 @@ import java.util.ArrayList;
 
 
 public class FacultyDAO {
+
+    public boolean login(String id,String pass){
+        String sql="SELECT password FROM facultys WHERE id=?";
+        try(Connection conn=DBConnection.getConnection();
+        PreparedStatement stmt=conn.prepareStatement(sql)) {
+            stmt.setString(1,id);
+            ResultSet rs=stmt.executeQuery();
+            if(rs.next()){
+                String originalPass= rs.getString("password");
+                String hashedpass=Authtication.hashedPass(pass);
+                return originalPass.equals(hashedpass);
+            }else {
+                return false;
+            }
+        }
+        catch (SQLException e){
+            System.out.println("Error in login "+e.getMessage());
+            return false;
+        }
+    }
+
     public void insertFaculty(Faculty faculty) {
         String pass= faculty.getPassword();
         String hashed= Authtication.hashedPass(pass);
