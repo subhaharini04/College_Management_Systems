@@ -20,7 +20,15 @@ public class facultyDashboard {
         System.out.println("Enter Password");
         String pass = obj.next();
         if (faculty.login(id, pass)) {
-            System.out.println("Login Successfull... Welcom! " + id);
+            if (faculty.isFirstLogin(id)) {
+                System.out.println("First-time login. Please reset your password:");
+                System.out.print("Enter new password: ");
+                String newPass = obj.next();
+                faculty.updatePassword(id, newPass);
+                faculty.markFirstLoginComplete(id);
+                System.out.println("Password updated successfully.");
+            }
+            System.out.println("Login Successfull... Welcome! " + id);
             dashboard(id);
         } else {
             System.out.println("Invalid ID/Password");

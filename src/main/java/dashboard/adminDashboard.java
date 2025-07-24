@@ -38,7 +38,7 @@ public class adminDashboard {
             System.out.println("1. Add Student\n2. Add Faculty\n3. Add Course\n4. Enroll Student in Course" +
                     "\n5. Delete Student / Faculty / Course\n6. Update Student / Faculty / Course" +
                     "\n7. View All Students / Faculty / Courses / Enrollments\n8. Exit to Main Menu");
-            System.out.println("Enter Choice: ");
+            System.out.print("Enter Choice: ");
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
@@ -153,27 +153,27 @@ public class adminDashboard {
                     System.out.print("Enter the Student ID to Delete: ");
                     String studentId = obj.next();
                     if (student.deleteStudent(studentId)) {
-                        System.out.println("Student Deleted Successfully");
+                        System.out.println("Student Deleted Successfully\n");
                     } else {
-                        System.out.println("Error in deleting");
+                        System.out.println("Error in deleting\n");
                     }
                     break;
                 case 2:
                     System.out.print("Enter the Faculty ID to Delete: ");
                     String facultyId = obj.next();
                     if (faculty.deleteFaculty(facultyId)) {
-                        System.out.println("Faculty Deleted Successfully");
+                        System.out.println("Faculty Deleted Successfully\n");
                     } else {
-                        System.out.println("Error in deleting");
+                        System.out.println("Error in deleting\n");
                     }
                     break;
                 case 3:
                     System.out.print("Enter the Course ID to Delete: ");
                     String courseId = obj.next();
                     if (course.deleteCourse(courseId)) {
-                        System.out.println("Course Deleted Successfully");
+                        System.out.println("Course Deleted Successfully\n");
                     } else {
-                        System.out.println("Error in deleting");
+                        System.out.println("Error in deleting\n");
                     }
                     break;
                 case 4:
@@ -182,9 +182,9 @@ public class adminDashboard {
                     System.out.print("Enter the Course ID: ");
                     String courseId1 = obj.next();
                     if (enroll.deleteEnrollment(studentId1, courseId1)) {
-                        System.out.println("Enrollement Deleted Successfully");
+                        System.out.println("Enrollement Deleted Successfully\n");
                     } else {
-                        System.out.println("Error in deleting");
+                        System.out.println("Error in deleting\n");
                     }
                     break;
                 case 5:

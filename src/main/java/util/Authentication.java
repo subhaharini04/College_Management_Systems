@@ -1,6 +1,6 @@
 package util;
 
-public class Authtication {
+public class Authentication {
     public static String hashedPass(String pass){
         StringBuilder hashed=new StringBuilder();
         for(char letter:pass.toCharArray()){

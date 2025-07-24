@@ -38,7 +38,6 @@ public class EnrollmentDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error in Enrolling: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -63,7 +62,6 @@ public class EnrollmentDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error in fetching:" + e.getMessage());
-            e.printStackTrace();
         }
         return studentList;
     }
@@ -86,7 +84,6 @@ public class EnrollmentDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error in fetching:" + e.getMessage());
-            e.printStackTrace();
         }
         return courseList;
     }
@@ -101,7 +98,6 @@ public class EnrollmentDAO {
             return rowDelete>0;
         }catch (SQLException e){
             System.out.println("Error in deleting: "+e.getMessage());
-            e.printStackTrace();
         }
         return false;
     }
@@ -121,7 +117,6 @@ public class EnrollmentDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error in fetching enrollments: " + e.getMessage());
-            e.printStackTrace();
         }
         return enrollmentList;
     }

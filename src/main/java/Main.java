@@ -1,18 +1,14 @@
-import dao.EnrollmentDAO;
-import dao.FacultyDAO;
-import dao.StudentDAO;
-import dao.CourseDAO;
 import dashboard.adminDashboard;
 import dashboard.facultyDashboard;
 import dashboard.studentDashboard;
-import util.Authtication;
+import util.Authentication;
 import util.DBConnection;
 
 import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
-    private static Authtication Authentication;
+    private static Authentication Authentication;
 
     public static void main(String[] args) {
         Scanner obj = new Scanner(System.in);

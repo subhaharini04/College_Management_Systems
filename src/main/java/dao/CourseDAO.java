@@ -34,7 +34,6 @@ public class CourseDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error in inserting Course: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -91,7 +90,6 @@ public class CourseDAO {
             return rowUpdate > 0;
         } catch (SQLException e) {
             System.out.println("Error in updating faculty: " + e.getMessage());
-            e.printStackTrace();
             return false;
         }
     }
@@ -112,7 +110,6 @@ public class CourseDAO {
             }
         }catch (SQLException e){
             System.out.println("Error in fetching: "+e.getMessage());
-            e.printStackTrace();
         }
         return null;
     }
@@ -126,7 +123,6 @@ public class CourseDAO {
             return rowDeleted>0;
         } catch (SQLException e) {
             System.err.println("Error deleting course: " + e.getMessage());
-            e.printStackTrace();
             return false;
         }
     }

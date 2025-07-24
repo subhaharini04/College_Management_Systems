@@ -20,6 +20,14 @@ public class studentDashboard {
         System.out.print("Enter Password: ");
         String pass = obj.next();
         if (student.login(id, pass)) {
+            if (student.isFirstLogin(id)) {
+                System.out.println("First-time login. Please reset your password:");
+                System.out.print("Enter new password: ");
+                String newPass = obj.next();
+                student.updatePassword(id, newPass);
+                student.markFirstLoginComplete(id);
+                System.out.println("Password updated successfully.");
+            }
             System.out.println("Login Successfull... Welcome! " + id);
             dashboard(id);
         } else {

@@ -1,7 +1,7 @@
 package dao;
 
 import model.Faculty;
-import util.Authtication;
+import util.Authentication;
 import util.DBConnection;
 
 import java.sql.*;
@@ -19,7 +19,7 @@ public class FacultyDAO {
             ResultSet rs=stmt.executeQuery();
             if(rs.next()){
                 String originalPass= rs.getString("password");
-                String hashedpass=Authtication.hashedPass(pass);
+                String hashedpass= Authentication.hashedPass(pass);
                 return originalPass.equals(hashedpass);
             }else {
                 return false;
@@ -28,6 +28,46 @@ public class FacultyDAO {
         catch (SQLException e){
             System.out.println("Error in login "+e.getMessage());
             return false;
+        }
+    }
+
+    public boolean isFirstLogin(String facultyId) {
+        String sql = "SELECT first_login FROM facultys WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, facultyId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getBoolean("first_login");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking first login: " + e.getMessage());
+        }
+        return false;
+    }
+
+
+    public void updatePassword(String facultyId, String newPass) {
+        String hashed = Authentication.hashedPass(newPass);
+        String sql = "UPDATE facultys SET password = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, hashed);
+            stmt.setString(2, facultyId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating password: " + e.getMessage());
+        }
+    }
+
+    public void markFirstLoginComplete(String facultyId) {
+        String sql = "UPDATE facultys SET first_login = FALSE WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, facultyId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating first_login status: " + e.getMessage());
         }
     }
 
@@ -44,10 +84,9 @@ public class FacultyDAO {
         }
     }
 
-
     public void insertFaculty(Faculty faculty) {
         String pass= faculty.getPassword();
-        String hashed= Authtication.hashedPass(pass);
+        String hashed= Authentication.hashedPass(pass);
         String sql = "INSERT INTO facultys(id,name,email,department,password) VALUES(?,?,?,?,?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -59,7 +98,6 @@ public class FacultyDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error in Insert Faculty : " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -81,7 +119,6 @@ public class FacultyDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error in fetching Facluty : " + e.getMessage());
-            e.printStackTrace();
         }
         return null;
     }
@@ -121,7 +158,7 @@ public class FacultyDAO {
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error in Database : "+e.getMessage());
             return false;
         }
     }
@@ -134,7 +171,7 @@ public class FacultyDAO {
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error in Database : "+e.getMessage());
             return false;
         }
     }
@@ -148,7 +185,6 @@ public class FacultyDAO {
             return rowDeleted>0;
         } catch (SQLException e) {
             System.err.println("Error deleting student: " + e.getMessage());
-            e.printStackTrace();
             return false;
         }
     }

@@ -1,6 +1,6 @@
 package dao;
 
-import util.Authtication;
+import util.Authentication;
 import util.DBConnection;
 
 import java.sql.Connection;
@@ -17,7 +17,7 @@ public class AdminDAO {
             ResultSet rs=stmt.executeQuery();
             if(rs.next()){
                 String originalPass=rs.getString("password");
-                String hashed= Authtication.hashedPass(pass);
+                String hashed= Authentication.hashedPass(pass);
                 return originalPass.equals(hashed);
             }
             else {
