@@ -19,6 +19,9 @@ public class adminDashboard {
     Scanner obj = new Scanner(System.in);
 
     public void display() {
+        System.out.println("------------------------");
+        System.out.println("----Admin Dashboard----");
+        System.out.println("------------------------");
         System.out.print("Enter ID: ");
         String id = obj.next();
         System.out.print("Enter Password: ");
@@ -56,9 +59,10 @@ public class adminDashboard {
                     for (Course c : courseList1) {
                         System.out.println("ID : " + c.getId() + " Name : " + c.getCourseName());
                     }
-                    System.out.println("Enter Student ID to Enroll ");
+                    System.out.println("-----------------------------");
+                    System.out.print("Enter Student ID to Enroll: ");
                     String studentId = obj.next();
-                    System.out.println("Enter Course ID to Enroll: ");
+                    System.out.print("Enter Course ID to Enroll: ");
                     String courseId = obj.next();
                     if (enroll.isAlreadyEnrolled(studentId, courseId)) {
                         System.out.println("Already Enrolled");
@@ -88,18 +92,21 @@ public class adminDashboard {
     }
 
     public void insertStudent() {
+        System.out.println("Enter the Student Detail");
+        obj.nextLine();
         System.out.print("Enter ID: ");
-        String id = obj.next();
+        String id = obj.nextLine();
         System.out.print("Enter Name: ");
-        String name = obj.next();
+        String name = obj.nextLine();
         System.out.print("Enter Mail Id: ");
-        String mail = obj.next();
+        String mail = obj.nextLine();
         System.out.print("Enter Major: ");
-        String major = obj.next();
+        String major = obj.nextLine();
         System.out.print("Enter Year: ");
         int year = obj.nextInt();
+        obj.nextLine();
         System.out.print("Enter Password: ");
-        String pass = obj.next();
+        String pass = obj.nextLine();
         if (student.isAlreadyInserted(id)) {
             System.out.println("Student already Exist");
         } else {
@@ -109,16 +116,18 @@ public class adminDashboard {
     }
 
     public void insertFaculty() {
+        System.out.println("Enter the Faculty Detail");
+        obj.nextLine();
         System.out.print("Enter ID: ");
-        String id = obj.next();
+        String id = obj.nextLine();
         System.out.print("Enter Name: ");
-        String name = obj.next();
+        String name = obj.nextLine();
         System.out.print("Enter Mail Id: ");
-        String mail = obj.next();
+        String mail = obj.nextLine();
         System.out.print("Enter Dept: ");
-        String major = obj.next();
+        String major = obj.nextLine();
         System.out.print("Enter Password: ");
-        String pass = obj.next();
+        String pass = obj.nextLine();
         if (faculty.isAlreadyInserted(id)) {
             System.out.println("Faculty already Exist");
         } else {
@@ -128,12 +137,14 @@ public class adminDashboard {
     }
 
     public void insertCourse() {
+        System.out.println("Enter the Course Detail");
+        obj.nextLine();
         System.out.print("Enter ID: ");
-        String id = obj.next();
+        String id = obj.nextLine();
         System.out.print("Enter Course Name: ");
-        String name = obj.next();
+        String name = obj.nextLine();
         System.out.print("Enter Faculty Id: ");
-        String facultyId = obj.next();
+        String facultyId = obj.nextLine();
         if (course.isAlreadyInserted(id)) {
             System.out.println("Course already Exist");
         } else {
@@ -205,17 +216,17 @@ public class adminDashboard {
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter the Student Id: ");
+                    System.out.print("Enter the Student Id: ");
                     String studentId = obj.next();
                     updateStudent(studentId);
                     break;
                 case 2:
-                    System.out.println("Enter the Faculty Id: ");
+                    System.out.print("Enter the Faculty Id: ");
                     String facultyId = obj.next();
                     updateFaculty(facultyId);
                     break;
                 case 3:
-                    System.out.println("Enter the Course Id: ");
+                    System.out.print("Enter the Course Id: ");
                     String courseId = obj.next();
                     System.out.println("Enter the Faculty Id to Update Faculty: ");
                     String facultyId1 = obj.next();
@@ -243,21 +254,21 @@ public class adminDashboard {
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter the New Email: ");
+                    System.out.print("Enter the New Email: ");
                     String mail = obj.next();
                     if (student.updateEmail(id, mail)) {
                         System.out.println("Updated Successfully");
                     }
                     break;
                 case 2:
-                    System.out.println("Enter the New Major: ");
+                    System.out.print("Enter the New Major: ");
                     String major = obj.next();
                     if (student.updateMajor(id, major)) {
                         System.out.println("Updated Successfully");
                     }
                     break;
                 case 3:
-                    System.out.println("Enter the New Year: ");
+                    System.out.print("Enter the New Year: ");
                     int year = obj.nextInt();
                     if (student.updateYear(id, year)) {
                         System.out.println("Updated Successfully");
@@ -281,14 +292,14 @@ public class adminDashboard {
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter the New Email: ");
+                    System.out.print("Enter the New Email: ");
                     String mail = obj.next();
                     if (faculty.updateEmail(id, mail)) {
                         System.out.println("Updated Successfully");
                     }
                     break;
                 case 2:
-                    System.out.println("Enter the New Department: ");
+                    System.out.print("Enter the New Department: ");
                     String dept = obj.next();
                     if (faculty.updateDept(id, dept)) {
                         System.out.println("Updated Successfully");
@@ -342,7 +353,7 @@ public class adminDashboard {
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter Student ID: ");
+                    System.out.print("Enter Student ID: ");
                     String id = obj.next();
                     student.getStudentById(id).displayInfo();
                     break;
@@ -354,6 +365,7 @@ public class adminDashboard {
                                 "Email:     " + s.getEmail() + "\n" +
                                 "Major:     " + s.getMajor() + "\n" +
                                 "Year:      " + s.getYear());
+                        System.out.println("-----------------------------");
                     }
                     break;
                 case 3:
@@ -374,9 +386,10 @@ public class adminDashboard {
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter Faculty ID: ");
+                    System.out.print("Enter Faculty ID: ");
                     String id = obj.next();
                     faculty.getFacultyById(id).displayInfo();
+                    System.out.println("-----------------------------");
                     break;
                 case 2:
                     List<Faculty> facultyList = faculty.getAllFaculty();
@@ -385,6 +398,7 @@ public class adminDashboard {
                                 "ID:        " + f.getId() + "\n" +
                                 "Email:     " + f.getEmail() + "\n" +
                                 "Department:" + f.getDept());
+                        System.out.println("-----------------------------");
                     }
                     break;
                 case 3:
@@ -405,7 +419,7 @@ public class adminDashboard {
             int choice = obj.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter Course ID: ");
+                    System.out.print("Enter Course ID: ");
                     String id = obj.next();
                     course.getCourseById(id).displayInfo();
                     break;
@@ -413,8 +427,9 @@ public class adminDashboard {
                     List<Course> courseList = course.getAllCourses();
                     for (Course c : courseList) {
                         System.out.println("Course Name:   " + c.getCourseName() + "\n" +
-                                "ID:        " + c.getId() + "\n" +
+                                "ID:             " + c.getId() + "\n" +
                                 "Faculty ID:     " + c.getFacultyId());
+                        System.out.println("-----------------------------");
                     }
                     break;
                 case 3:
@@ -438,7 +453,8 @@ public class adminDashboard {
                     List<Enrollment> enrollList = enroll.getAllEnrollments();
                     for (Enrollment e : enrollList) {
                         System.out.println("Student ID:   " + e.getStudentId() + "\n" +
-                                "Course ID:        " + e.getCourseId());
+                                "Course ID:    " + e.getCourseId());
+                        System.out.println("-----------------------------");
                     }
                     break;
                 case 2:

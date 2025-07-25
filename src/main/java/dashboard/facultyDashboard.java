@@ -4,6 +4,8 @@ import dao.CourseDAO;
 import dao.EnrollmentDAO;
 import dao.FacultyDAO;
 import model.Course;
+import model.Enrollment;
+import model.Student;
 
 import java.util.List;
 import java.util.Scanner;
@@ -15,9 +17,12 @@ public class facultyDashboard {
     Scanner obj = new Scanner(System.in);
 
     public void display() {
-        System.out.println("Enter Id: ");
+        System.out.println("------------------------");
+        System.out.println("----Faculty Dashboard----");
+        System.out.println("------------------------");
+        System.out.print("Enter Id: ");
         String id = obj.next();
-        System.out.println("Enter Password");
+        System.out.print("Enter Password: ");
         String pass = obj.next();
         if (faculty.login(id, pass)) {
             if (faculty.isFirstLogin(id)) {
@@ -47,15 +52,17 @@ public class facultyDashboard {
                 case 1:
                     System.out.println("Courses :");
                     for (Course c : courseList) {
-                        System.out.println("ID: " + c.getId() + "Course: " + c.getCourseName());
+                        System.out.println("ID: " + c.getId() + "   Course: " + c.getCourseName());
                     }
+                    System.out.println("-----------------------------");
                     break;
                 case 2:
                     System.out.println("Courses :");
                     for (Course c : courseList) {
-                        System.out.println("ID: " + c.getId() + "Course: " + c.getCourseName());
+                        System.out.println("ID: " + c.getId() + "  Course: " + c.getCourseName());
                     }
-                    System.out.println("Enter CourseId: ");
+                    System.out.println("-----------------------------");
+                    System.out.print("Enter CourseId: ");
                     String courseid = obj.next();
                     boolean found = false;
                     for (Course c : courseList) {
@@ -65,7 +72,11 @@ public class facultyDashboard {
                         }
                     }
                     if (found) {
-                        enroll.getStudentsByCourse(courseid);
+                       List<Student> enrollList = enroll.getStudentsByCourse(courseid);
+                       for(Student s:enrollList){
+                           System.out.println("ID :  "+s.getId()+"  Name : "+s.getName()+"  Year : "+s.getYear()+" Major : "+s.getMajor());
+                       }
+                        System.out.println("-----------------------------");
                     } else {
                         System.out.println("Invalid Course Id");
                     }

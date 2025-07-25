@@ -15,6 +15,9 @@ public class studentDashboard {
     Scanner obj = new Scanner(System.in);
 
     public void display() {
+        System.out.println("------------------------");
+        System.out.println("----Student Dashboard----");
+        System.out.println("------------------------");
         System.out.print("Enter ID: ");
         String id = obj.next();
         System.out.print("Enter Password: ");
@@ -52,6 +55,7 @@ public class studentDashboard {
                     for (Course c : courseList) {
                         System.out.println("ID : " + c.getId() + " Name : " + c.getCourseName());
                     }
+                    System.out.println("-----------------------------");
                     break;
                 case 2:
                     List<Course> courseList1 = course.getAllCourses();
@@ -59,7 +63,8 @@ public class studentDashboard {
                     for (Course c : courseList1) {
                         System.out.println("ID : " + c.getId() + " Name : " + c.getCourseName());
                     }
-                    System.out.println("Enter Course ID to Enroll: ");
+                    System.out.println("-----------------------------");
+                    System.out.print("Enter Course ID to Enroll: ");
                     String courseId = obj.next();
                     if (enroll.isAlreadyEnrolled(id, courseId)) {
                         System.out.println("Already Enrolled");

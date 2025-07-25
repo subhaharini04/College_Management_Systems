@@ -37,7 +37,7 @@ public class Course {
 
     public void displayInfo(){
         System.out.println("Course Name:   " + getCourseName() + "\n" +
-                "ID:        " + getId() + "\n" +
+                "ID:             " + getId() + "\n" +
                 "Faculty ID:     " + getFacultyId());
     }
 }
