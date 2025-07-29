@@ -1,37 +1,108 @@
-# 🎓 College Management System (Java + MySQL):
-A simple Java-based console application to manage students and faculty information in a college. This project uses **JDBC** to connect with a **MySQL** database and demonstrates key **Object-Oriented Programming (OOP)** principles like encapsulation, abstraction, and inheritance.
+# 🎓 College Management System (Java + MySQL)
+
+This is a **console-based College Management System** built using **Java, JDBC, and MySQL**, following **Object-Oriented Programming** principles and DAO architecture. It allows **students**, **faculty**, and **admins** to perform CRUD operations and login-based actions securely.
+
+---
 
 ## 🚀 Features
-- Add, update, retrieve, and delete student and faculty records
-- Organized using the **DAO pattern** for better modularity and maintainability
-- Secure and structured **database connectivity using JDBC**
-- Clear separation of concerns with `model`, `dao`, and `util` packages
-- User-friendly console interface for interacting with the system
 
-## 🛠️ Tech Stack
-- **Language:** Java
-- **Database:** MySQL
-- **Database Connector:** JDBC
-- **IDE Used:** IntelliJ
-- **Tools:** MySQL Workbench, Git & GitHub
+- 🧑‍🎓 Student Module:
+  - Register new students
+  - View student profile
+  - Login & update email/password
 
-**🔧 How to Run**
-- Clone the repository
-    - git clone https://github.com/yourusername/college-management-system.git
-    -  cd college-management-system
-- Set up the MySQL database using the schema provided above.
-- Update your DB credentials in DBConnection.java.
-- Compile and run Main.java.
+- 🧑‍🏫 Faculty Module:
+  - Add, update, delete faculty records
+  - View all faculty details
 
-📚 Concepts Used
-- Object-Oriented Programming (OOP)
-- JDBC and SQL
-- DAO Design Pattern
-- Console-based Java application development
+- 📚 Course Module:
+  - Add, update, delete courses
+  - Enroll students in courses
 
-✨ Future Enhancements
-- Login system with role-based access (Admin/Faculty/Student)
-- Academic result management
-- GUI using Java Swing or JavaFX
-- Export data to Excel or PDF
+- 🔒 Authentication:
+  - Role-based login (Student, Faculty, Admin)
+  - Basic password hashing using a simple logic
 
+- 🧩 Modular DAO Design:
+  - Clean separation of concerns using DAO & Model packages
+
+---
+
+## 🧰 Technologies Used
+
+| Tech          | Description                       |
+|---------------|-----------------------------------|
+| Java          | Core application logic            |
+| JDBC          | Connect Java to MySQL             |
+| MySQL         | Backend database storage          |
+| DAO Pattern   | Separation of concerns (clean code)|
+| IntelliJ IDEA | Code editor                       |
+| Maven         | (Optional) Dependency management  |
+
+---
+
+## 🗂️ Project Structure
+
+```bash
+CollegeManagementSystem/
+├── src/
+│ ├── dao/
+│ ├── model/
+│ ├── util/
+│ ├── Main.java
+├── resources/
+│ └── db_config.properties
+└── README.md
+```
+---
+## 🛠️ How to Run
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/college-management-system.git
+   cd college-management-system
+   ```
+2. **Set up MySQL database**
+
+- Create a database (e.g., college_db)
+- Import tables using your schema script (if available)
+3. **Update DB Configuration**
+
+- In db_config.properties, set your MySQL username, password, and DB name.
+4. **Run Main.java**
+- Use IntelliJ IDEA or run via terminal:
+```bash
+javac Main.java
+java Main
+```
+## 📸 Sample Credentials (for testing)
+
+```bash
+Admin
+Username: admin1
+Password: Pwd123
+
+Student
+ID: STU001
+Password: STU001
+
+Faculty
+ID: FAC001
+Password: FAC001
+```
+##🧠 Concepts Applied
+- Java OOP: Abstraction, Inheritance, Encapsulation
+- JDBC for DB communication
+- Role-based Access Control
+- Basic password hashing
+- DAO & Model architecture
+
+## 🙋‍♀️ Author
+Subhaharini S
+Java | SQL | Front-End | Full Stack Developer
+📧 subhasenniappan@gmail.com
+
+## ⭐️ If you like this project
+Give it a ⭐️ on GitHub and feel free to fork it or suggest improvements!
+---
+Let me know if you'd like help pushing this project to GitHub or want the above as a downloadable `README.md` file.
